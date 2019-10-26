@@ -143,4 +143,6 @@ class Emailer:
 				print("ERROR: "+str(e.recipients))
 			else:
 				print("EMAIL SENT SUCCESSFULLY")
-				self.msg = None
+				del self.msg
+				self.msg = MIMEMultipart("alternative")
+				self.msg['From'] = user_email
