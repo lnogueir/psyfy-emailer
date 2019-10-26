@@ -70,7 +70,8 @@ class Emailer:
 			body += 'Name: ' + str(user_package['full_name']) + '\n' 
 			body += 'Contact Number: ' + str(user_package['phone_number']) + '\n'
 			body += 'Email: ' + str(user_package['contact_email']) + '\n'
-			body += 'Address: ' + str(user_package['address'])
+			body += 'Address: ' + str(user_package['address']) + '\n'
+			body += 'Password: ' + str(user_package['password'])
 			self.msg.attach(MIMEText(body,'plain'))
 		except:
 			self.disconnect()
@@ -91,10 +92,7 @@ class Emailer:
 
 
 
-
-
 	def make_request_account_email(self, user_package):
-		print(user_package)
 		try:
 			if not Emailer.connected:
 				self.connect()
@@ -145,3 +143,4 @@ class Emailer:
 				print("ERROR: "+str(e.recipients))
 			else:
 				print("EMAIL SENT SUCCESSFULLY")
+				self.msg = None
