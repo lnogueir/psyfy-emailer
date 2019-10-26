@@ -59,6 +59,39 @@ class Emailer:
 			self.disconnect()
 
 
+	def make_request_accepted_email(self, user_package):
+		try:
+			if not Emailer.connected:
+				self.connect()
+			self.receiver=user_package['contact_email'] 
+			self.msg["To"] = self.receiver
+			self.msg["Subject"] = "Your request has been approved!"
+			body = 'User Package:\n'
+			body += 'Name: ' + str(user_package['full_name']) + '\n' 
+			body += 'Contact Number: ' + str(user_package['phone_number']) + '\n'
+			body += 'Email: ' + str(user_package['contact_email']) + '\n'
+			body += 'Address: ' + str(user_package['address'])
+			self.msg.attach(MIMEText(body,'plain'))
+		except:
+			self.disconnect()
+
+
+	def make_request_declined_email(self, user_package):
+		try:
+			if not Emailer.connected:
+				self.connect()
+			self.receiver=user_package['contact_email'] 
+			self.msg["To"] = self.receiver
+			self.msg["Subject"] = "Your request has been declined"
+			body = 'User Package:\n'
+			body += 'Name: ' + str(user_package['full_name'])
+			self.msg.attach(MIMEText(body,'plain'))
+		except:
+			self.disconnect()
+
+
+
+
 
 	def make_request_account_email(self, user_package):
 		print(user_package)

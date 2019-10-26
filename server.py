@@ -25,6 +25,35 @@ def test_request2():
 	except:
 		return jsonify({'error': 'Email was not sent properly'}), 500	
 
+@app.route('/request_accepted', methods=['POST'])
+def request_accepted():
+	try:
+		emailer.connect()
+		emailer.make_request_accepted_email(request.get_json())
+		emailer.send_email()
+		emailer.disconnect()
+		return jsonify({'message':'Email sent successfully'})		
+	except:
+		return jsonify({'error': 'Email was not sent properly'}), 500	
+
+@app.route('request_declined', methods=['POST'])
+def request_declined():
+	try:
+		emailer.connect()
+		emailer.make_request_declined_email(request.get_json())
+		emailer.send_email()
+		emailer.disconnect()
+		return jsonify({'message':'Email sent successfully'})		
+	except:
+		return jsonify({'error': 'Email was not sent properly'}), 500	
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
+
