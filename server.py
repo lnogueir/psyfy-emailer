@@ -36,7 +36,7 @@ def request_accepted():
 	except:
 		return jsonify({'error': 'Email was not sent properly'}), 500	
 
-@app.route('request_declined', methods=['POST'])
+@app.route('/request_declined', methods=['POST'])
 def request_declined():
 	try:
 		emailer.connect()
