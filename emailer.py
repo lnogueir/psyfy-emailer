@@ -93,30 +93,29 @@ class Emailer:
 
 
 	def make_request_account_email(self, user_package):
-		try:
-			if not Emailer.connected:
-				self.connect()
-			self.receiver = self.emailer.user	
-			self.msg['To'] = self.emailer.user
-			self.msg["Subject"] = "Account Request for " + str(user_package['full_name'])
-			body = 'User Package:\n'
-			body += 'Name: ' + str(user_package['full_name']) + '\n' 
-			body += 'Contact Number: ' + str(user_package['phone_number']) + '\n'
-			body += 'Email: ' + str(user_package['contact_email']) + '\n'
-			body += 'Address: ' + str(user_package['address']) + '\n'
-			body += 'About: ' + str(user_package['about']) + '\n'
-			body += 'Accept: ' + str(user_package['accept']) + '\n'
-			body += 'Deny: ' + str(user_package['deny'])
-			self.msg.attach(MIMEText(body,'plain'))
-			print("checking")
+
+		if not Emailer.connected:
+			print('checking in email connected')
+			self.connect()
+		self.receiver = self.emailer.user	
+		self.msg['To'] = self.emailer.user
+		self.msg["Subject"] = "Account Request for " + str(user_package['full_name'])
+		body = 'User Package:\n'
+		body += 'Name: ' + str(user_package['full_name']) + '\n' 
+		body += 'Contact Number: ' + str(user_package['phone_number']) + '\n'
+		body += 'Email: ' + str(user_package['contact_email']) + '\n'
+		body += 'Address: ' + str(user_package['address']) + '\n'
+		body += 'About: ' + str(user_package['about']) + '\n'
+		body += 'Accept: ' + str(user_package['accept']) + '\n'
+		body += 'Deny: ' + str(user_package['deny'])
+		self.msg.attach(MIMEText(body,'plain'))
+		if 'files' in user_package:
 			for file in user_package['files']:
 				part = MIMEBase("application", "octet-stream")
 				part.set_payload(file['base64'])
 				part.add_header('Content-Transfer-Encoding', 'base64')
 				part['Content-Disposition'] = 'attachment; filename="%s"' % file['fileName']
-				self.msg.attach(part)	
-		except:
-			self.disconnect()
+				self.msg.attach(part)
 
 
 	def make_html_email(self):
@@ -145,4 +144,4 @@ class Emailer:
 				print("EMAIL SENT SUCCESSFULLY")
 				del self.msg
 				self.msg = MIMEMultipart("alternative")
-				self.msg['From'] = user_email
+				self.msg['From'] = self.emailer.user
