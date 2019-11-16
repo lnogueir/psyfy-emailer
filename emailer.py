@@ -117,6 +117,19 @@ class Emailer:
 				part['Content-Disposition'] = 'attachment; filename="%s"' % file['fileName']
 				self.msg.attach(part)
 
+	def make_forgot_password_email(self, email_info):
+		if not Emailer.connected:
+			self.connect()
+		self.receiver = email_info['email']
+		self.msg["To"] = self.receiver
+		self.msg["Subject"] = "Forgot Password Request"
+		body = "Reset password link: " + str(email_info["reset_password_link"])
+		self.msg.attach(MIMEText(body, 'plain'))
+ 
+
+
+
+
 
 	def make_html_email(self):
 		try:
