@@ -34,6 +34,16 @@ def request_declined():
 	return jsonify({'message':'Email sent successfully'})		
 	
 
+@app.route('/forgot_password', methods=['POST'])
+def forgot_password():
+	try:
+		emailer.connect()
+		emailer.make_forgot_password_email(request.get_json())
+		emailer.send_email()
+		emailer.disconnect()
+		return jsonify({'message':'Email sent successfully'})		
+	except:
+		return jsonify({'error': 'Email was not sent properly'}), 500	
 
 
 
