@@ -5,7 +5,7 @@ app = Flask(__name__)
 emailer = Emailer('ece150sucks@gmail.com', 'jawad123')
 
 
-@app.route('request_account', methods=['POST'])
+@app.route('/request_account', methods=['POST'])
 def request_account():	
 	emailer.connect()
 	emailer.make_request_account_email(request.get_json())
