@@ -35,7 +35,7 @@ def request_accepted_template(user_package):
 					</body>
 				</html>
 			""".format(
-					user_package['full_name'].split[' '][0] if len(user_package['full_name'].split[' '])!=0 else user_package['name'], 
+					user_package['full_name'].split()[0] if len(user_package['full_name'].split())!=0 else user_package['name'], 
 					user_package['password'], user_package['full_name'], user_package['contact_email'], user_package['phone_number'],
 					user_package['address']
 				)
