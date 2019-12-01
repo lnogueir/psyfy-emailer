@@ -2,12 +2,12 @@ def request_accepted_template(user_package):
 	return (
 			"""
 				<html>
-					<body style="border:1px solid #9645ff">
+					<body style="border:0.4px solid #c5cae9;border-radius:10px;padding:15px;">
 						<div align="left" style="text-align:left;">
 							<h2>Hello {}, you are officially a member of PsyCare!</h2>
 							<p>We are happy to say that your account has been approved by our team!</p>
 							<p>Your account is now available for <b>patients</b> to see.</p>
-							<h3>Next steps:</h3><br/>
+							<h3>Next steps:</h3>
 							<ol>
 								<li>Login to your account with this password: <i><b>{}</b></i></li>
 								<li>Update your password on <a href="#">'Manage your credentials'</a></li>
@@ -35,8 +35,11 @@ def request_accepted_template(user_package):
 					</body>
 				</html>
 			""".format(
-					user_package['full_name'].split[' '][0] if len(user_package['full_name'].split[' '])!=0 else user_package['name'], 
-					user_package['password'], user_package['full_name'], user_package['contact_email'], user_package['phone_number'],
+					user_package['full_name'], 
+					user_package['password'],
+					user_package['full_name'],
+					user_package['contact_email'],
+					user_package['phone_number'],
 					user_package['address']
 				)
 			   )
