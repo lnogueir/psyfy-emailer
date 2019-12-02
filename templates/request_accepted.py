@@ -42,5 +42,6 @@ def request_accepted_template(user_package):
 					user_package['phone_number'],
 					user_package['address']
 			   )
+			)
 
 
