@@ -5,7 +5,7 @@ app = Flask(__name__)
 emailer = Emailer('ece150sucks@gmail.com', 'jawad123')
 
 
-@app.route('/request_account', methods=['POST'])
+@app.route('/emailer/request_account', methods=['POST'])
 def request_account():	
 	emailer.connect()
 	emailer.make_request_account_email(request.get_json())
@@ -15,7 +15,7 @@ def request_account():
 	
 
 
-@app.route('/request_accepted', methods=['POST'])
+@app.route('/emailer/request_accepted', methods=['POST'])
 def request_accepted():	
 	emailer.connect()
 	emailer.make_request_accepted_email(request.get_json())
@@ -25,7 +25,7 @@ def request_accepted():
 
 
 
-@app.route('/request_declined', methods=['POST'])
+@app.route('/emailer/request_declined', methods=['POST'])
 def request_declined():	
 	emailer.connect()
 	emailer.make_request_declined_email(request.get_json())
@@ -34,7 +34,7 @@ def request_declined():
 	return jsonify({'message':'Email sent successfully'})		
 	
 
-@app.route('/forgot_password', methods=['POST'])
+@app.route('/emailer/forgot_password', methods=['POST'])
 def forgot_password():
 	try:
 		emailer.connect()
