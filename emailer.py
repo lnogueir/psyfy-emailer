@@ -120,12 +120,13 @@ class Emailer:
 	def send_email(self):
 		if Emailer.connected:    
 			try:
-				Emailer.connection.sendmail(self.emailer.user, self.receiver, self.msg.as_string())
-			except SMTPRecipientsRefused as e:
-				refused = e.recipients
-				print("ERROR: "+str(e.recipients))
+				Emailer.connection.sendmail( self.emailer.user, self.receiver, self.msg.as_string() )       
+			except SMTPRecipientsRefused:
+				print("Email value is not valid")
+			except AttributeError:
+				print("Email value must be of type string")
 			else:
-				print("EMAIL SENT SUCCESSFULLY")
+				print("Email sent" )
 				del self.msg
 				self.msg = MIMEMultipart("alternative")
 				self.msg['From'] = self.emailer.user
