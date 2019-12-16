@@ -44,7 +44,6 @@ class Emailer:
 			cls.connected=False
 
 
-
 	def make_base64_attachment_email(self, file_as_base64):
 		try:
 			if not Emailer.connected:
@@ -76,14 +75,10 @@ class Emailer:
 		self.receiver=user_package['contact_email'] 
 		self.msg["To"] = self.receiver
 		self.msg["Subject"] = "Your request has been declined"
-		body = 'User Package:\n'
-		body += 'Name: ' + str(user_package['full_name'])
-		self.msg.attach(MIMEText(body,'plain'))
+		body = Template.request_declined( user_package )
+		self.msg.attach(MIMEText(body,'html'))
 		
 		
-
-
-
 	def add_attachment(self, file):
 		part = MIMEBase("application", "octet-stream")
 		part.set_payload(file['base64'])
@@ -112,44 +107,26 @@ class Emailer:
 			for file in user_package['files']:
 				self.add_attachment(file)				
 
-	def make_forgot_password_email(self, email_info):
+	def make_forgot_password_email(self, user_package):
 		if not Emailer.connected:
 			self.connect()
-		self.receiver = email_info['email']
+		self.receiver = user_package['contact_email']
 		self.msg["To"] = self.receiver
 		self.msg["Subject"] = "Forgot Password Request"
-		body = "Reset password link: " + str(email_info["reset_password_link"])
-		self.msg.attach(MIMEText(body, 'plain'))
+		body = Template.forgot_password(user_package)
+		self.msg.attach(MIMEText(body, 'html'))
  
-
-
-
-
-
-	def make_html_email(self):
-		try:
-			if not Emailer.connected:
-				self.connect()
-			self.msg["To"] = self.receiver
-			self.msg["Subject"] = "Making sure this works"
-			body = """
-				<b>This is an html email</b>
-				<a href="https://stackoverflow.com/questions/882712/sending-html-email-using-python">Aperta aqui viado</a>
-			"""
-			self.msg.attach(MIMEText(body,'html'))
-		except:
-			self.disconnect()		
-
 
 	def send_email(self):
 		if Emailer.connected:    
 			try:
-				Emailer.connection.sendmail(self.emailer.user, self.receiver, self.msg.as_string())
-			except SMTPRecipientsRefused as e:
-				refused = e.recipients
-				print("ERROR: "+str(e.recipients))
+				Emailer.connection.sendmail( self.emailer.user, self.receiver, self.msg.as_string() )       
+			except SMTPRecipientsRefused:
+				print("Email value is not valid")
+			except AttributeError:
+				print("Email value must be of type string")
 			else:
-				print("EMAIL SENT SUCCESSFULLY")
+				print("Email sent" )
 				del self.msg
 				self.msg = MIMEMultipart("alternative")
 				self.msg['From'] = self.emailer.user

@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from emailer import Emailer
 
 app = Flask(__name__)
-emailer = Emailer('ece150sucks@gmail.com', 'jawad123')
+emailer = Emailer('andrenetto@poli.ufrj.br', 'andre333111')
 
 
 @app.route('/request_account', methods=['POST'])
@@ -14,7 +14,6 @@ def request_account():
 	return jsonify({'message':'Email sent successfully'})		
 	
 
-
 @app.route('/request_accepted', methods=['POST'])
 def request_accepted():	
 	emailer.connect()
@@ -22,7 +21,6 @@ def request_accepted():
 	emailer.send_email()
 	emailer.disconnect()
 	return jsonify({'message':'Email sent successfully'})		
-
 
 
 @app.route('/request_declined', methods=['POST'])
@@ -42,13 +40,11 @@ def forgot_password():
 		emailer.send_email()
 		emailer.disconnect()
 		return jsonify({'message':'Email sent successfully'})		
-	except:
-		return jsonify({'error': 'Email was not sent properly'}), 500	
-
-
+	except Exception as e:   #I could only find this one.
+		return jsonify({'error': e.args}), 500	
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host="127.0.0.1", debug=True)
 
 
