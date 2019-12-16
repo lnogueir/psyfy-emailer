@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from emailer import Emailer
 
 app = Flask(__name__)
-emailer = Emailer('andrenetto@poli.ufrj.br', 'andre333111')
+emailer = Emailer('ece150sucks@gmail.com', 'jawad123')
 
 
 @app.route('/request_account', methods=['POST'])
@@ -46,5 +46,3 @@ def forgot_password():
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", debug=True)
-
-
