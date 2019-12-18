@@ -1,8 +1,13 @@
 FROM python:3.6-alpine
+RUN apk add --no-cache \
+        uwsgi-python3 \
+        python3
+
 ADD . /emailer
 WORKDIR /emailer
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+
 COPY . .
 
 # EXPOSE 5000
