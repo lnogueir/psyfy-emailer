@@ -1,8 +1,10 @@
 FROM python:3.6-alpine
+RUN apk add build-base
 
 
 
-RUN pip3 install uwsgi
+pip3 install uwsgi
+
 ADD . /emailer
 WORKDIR /emailer
 COPY requirements.txt .
