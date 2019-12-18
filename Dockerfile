@@ -1,9 +1,8 @@
 FROM python:3.6-alpine
-RUN apt-get update && \
-    apt-get install -y && \
-    pip3 install uwsgi
 
 
+
+RUN pip install uwsgi
 ADD . /emailer
 WORKDIR /emailer
 COPY requirements.txt .
