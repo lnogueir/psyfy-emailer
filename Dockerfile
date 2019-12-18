@@ -3,7 +3,7 @@ RUN apk add build-base
 
 
 
-pip3 install uwsgi
+RUN pip3 install uwsgi
 
 ADD . /emailer
 WORKDIR /emailer
