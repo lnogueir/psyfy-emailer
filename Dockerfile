@@ -1,7 +1,7 @@
 FROM python:3.6-alpine
-RUN apk add --no-cache \
-        uwsgi-python3 \
-        python3
+RUN apt-get update && \
+    apt-get install -y && \
+    pip3 install uwsgi
 
 
 ADD . /emailer
