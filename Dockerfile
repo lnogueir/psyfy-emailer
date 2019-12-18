@@ -2,6 +2,8 @@ FROM python:3.6-alpine
 RUN apk add --no-cache \
         uwsgi-python3 \
         python3
+RUN sudo apt-get install uwsgi-plugin-python
+
 
 ADD . /emailer
 WORKDIR /emailer
