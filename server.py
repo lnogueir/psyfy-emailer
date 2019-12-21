@@ -1,13 +1,14 @@
 from flask import Flask, jsonify, request, logging
 from logging import FileHandler, basicConfig, WARNING, DEBUG, Formatter
 from emailer import Emailer
+import os
 from time import sleep
 
 app = Flask(__name__)
 logging.default_handler.setFormatter(
     Formatter('[%(asctime)s] %(levelname)s in %(module)s: %(message)s'))
 
-emailer = Emailer("ece150sucks@gmail.com", "jawad123")
+emailer = Emailer(os.getenv('EMAILER_ADDRESS'), os.getenv('EMAILER_PASSWORD'))
 
 if not app.debug:
     file_handler = FileHandler('emailer.log')
@@ -90,4 +91,5 @@ def forgot_password():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", debug=True)
+    app.run(host=os.getenv('HOST_ADDRESS'),
+            debug=bool(os.getenv('FLASK_DEBUG')))
