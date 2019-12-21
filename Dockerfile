@@ -1,15 +1,4 @@
 FROM python:3
-
-
-# RUN apk add --no-cache --update \
-#   python3 \
-#   python3-dev \
-#   py3-gevent \
-#   uwsgi \
-#   uwsgi-python3 \
-#   uwsgi-http \
-#   uwsgi-gevent3
-
 ADD . /emailer
 WORKDIR /emailer
 COPY requirements.txt .
