@@ -12,7 +12,7 @@ def request_declined_template(user_package):
                         </div>
                         <div>
                             <p style="padding: 5px 7.5px 7.5px 20px">
-                                <span style="margin:0;font-size:22px;font-weight:900;">Hello {0},</span>
+                                <span style="font-size:22px;font-weight:900;">Hello {0},</span>
                                 <br/>
                                 <br/>
                                 We are sorry to inform you that your account request has been declined by our admission team.

@@ -3,17 +3,9 @@ def request_account_template(user_package):
         """
             <html>
                 <body style="font-size: 20px;overflow-x:hidden;">
-                    <div style="background: url(https://raw.githubusercontent.com/lnogueir/psyfy-frontend/master/psyfy/src/assets/main_background.jpg);
-                                height:35px; 
-                                width: 100%;
-                                padding: 20px 20px 31px 20px;
-                                ">
-                        <img src="https://raw.githubusercontent.com/lnogueir/psyfy-frontend/master/psyfy/src/assets/images/psycare_logo.png" 
-                        style="height: 47.5px"/>   
-                    </div>
                     <div>
                         <p style="padding: 5px 7.5px 7.5px 20px;">
-                            <span style="margin:0;font-size:22px;font-weight:900;">Hello {0},</span>
+                            <span style="font-size:22px;font-weight:900;">User Package:</span>
                             <ul>
                                 <li>Name: {0} <br/></li>
                                 <li>Email: {1}</li>
@@ -21,7 +13,7 @@ def request_account_template(user_package):
                                 <li>Clinic Address: {3}</li>
                                 <li>About: {4}</li>
                             </ul>
-                            <span style="margin:0;font-size:22px;font-weight:900;">Hello {0},</span>
+                            <span style="font-size:22px;font-weight:900;">Decision:</span>
                             <ol>
                                 <li><a href="{5}">Accept</a></li>
                                 <li><a href="{6}">Deny</a></li>

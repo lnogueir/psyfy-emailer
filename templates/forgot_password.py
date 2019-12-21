@@ -13,7 +13,7 @@ def forgot_password_template(user_package):
                 </div>
                 <div>
                     <p style="padding: 5px 7.5px 7.5px 20px;">
-                        <span style="margin:0;font-size:22px;font-weight:900;">Hello {},</span>
+                        <span style="font-size:22px;font-weight:900;">Hello {},</span>
                         <br/>
                         A reset password request has been made for your account. <br/>
                         Please visit the link below to reset your password:<br/>

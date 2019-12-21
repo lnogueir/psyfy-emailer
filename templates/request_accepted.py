@@ -13,7 +13,7 @@ def request_accepted_template(user_package):
                     </div>
                     <div>
                         <p style="padding: 5px 7.5px 7.5px 20px">
-                            <span style="margin:0;font-size:22px;font-weight:900;">Hello {0},</span>
+                            <span style="font-size:22px;font-weight:900;">Hello {0},</span>
                             <br/><br/>
                             We are happy to say that your account has been aproved 
                             by our team and you are now a official PsyCare member!
