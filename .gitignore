@@ -1,3 +1,8 @@
 emailer-env/
 __pycache__/
+<<<<<<< HEAD
 /.history
+=======
+*.pyc
+.*
+>>>>>>> upstream/master
