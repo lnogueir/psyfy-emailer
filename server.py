@@ -10,25 +10,6 @@ logging.default_handler.setFormatter(
 
 emailer = Emailer(os.getenv('EMAILER_ADDRESS'), os.getenv('EMAILER_PASSWORD'))
 
-<<<<<<< HEAD
-@app.route('/emailer/request_account', methods=['POST'])
-def request_account():	
-	emailer.connect()
-	emailer.make_request_account_email(request.get_json())
-	emailer.send_email()
-	emailer.disconnect()
-	return jsonify({'message':'Email sent successfully'})		
-	
-
-
-@app.route('/emailer/request_accepted', methods=['POST'])
-def request_accepted():	
-	emailer.connect()
-	emailer.make_request_accepted_email(request.get_json())
-	emailer.send_email()
-	emailer.disconnect()
-	return jsonify({'message':'Email sent successfully'})		
-=======
 if not app.debug:
     file_handler = FileHandler('emailer.log')
     file_handler.setLevel(WARNING)
@@ -53,7 +34,6 @@ def request_account():
         if num_of_attemps_to_send_email <= 5 else
         (jsonify({"error": "Failed to send email"}), 500)
     )
->>>>>>> upstream/master
 
 
 @app.route("/request_accepted", methods=["POST"])
@@ -73,28 +53,6 @@ def request_accepted():
         (jsonify({"error": "Failed to send email"}), 500)
     )
 
-<<<<<<< HEAD
-@app.route('/emailer/request_declined', methods=['POST'])
-def request_declined():	
-	emailer.connect()
-	emailer.make_request_declined_email(request.get_json())
-	emailer.send_email()
-	emailer.disconnect()
-	return jsonify({'message':'Email sent successfully'})		
-	
-
-@app.route('/emailer/forgot_password', methods=['POST'])
-def forgot_password():
-	try:
-		emailer.connect()
-		emailer.make_forgot_password_email(request.get_json())
-		emailer.send_email()
-		emailer.disconnect()
-		return jsonify({'message':'Email sent successfully'})		
-	except:
-		return jsonify({'error': 'Email was not sent properly'}), 500	
-=======
->>>>>>> upstream/master
 
 @app.route("/request_declined", methods=["POST"])
 def request_declined():
@@ -114,11 +72,6 @@ def request_declined():
     )
 
 
-<<<<<<< HEAD
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
-=======
 @app.route("/forgot_password", methods=["POST"])
 def forgot_password():
     user_package = request.get_json()
@@ -135,7 +88,6 @@ def forgot_password():
         if num_of_attemps_to_send_email <= 5 else
         (jsonify({"error": "Failed to send email"}), 500)
     )
->>>>>>> upstream/master
 
 
 if __name__ == "__main__":
