@@ -18,7 +18,7 @@ else:
     basicConfig(level=DEBUG)
 
 
-@app.route("/request_account", methods=["POST"])
+@app.route("/emailer/request_account", methods=["POST"])
 def request_account():
     user_package = request.get_json()
     app.logger.info(f'REQUEST_ACCOUNT REQUEST FOR: {user_package}')
@@ -36,7 +36,7 @@ def request_account():
     )
 
 
-@app.route("/request_accepted", methods=["POST"])
+@app.route("/emailer/request_accepted", methods=["POST"])
 def request_accepted():
     user_package = request.get_json()
     app.logger.info(f'REQUEST_ACCEPTED REQUEST FOR: {user_package}')
@@ -54,7 +54,7 @@ def request_accepted():
     )
 
 
-@app.route("/request_declined", methods=["POST"])
+@app.route("/emailer/request_declined", methods=["POST"])
 def request_declined():
     user_package = request.get_json()
     app.logger.info(f'REQUEST_DECLINED REQUEST FOR: {user_package}')
@@ -72,7 +72,7 @@ def request_declined():
     )
 
 
-@app.route("/forgot_password", methods=["POST"])
+@app.route("/emailer/forgot_password", methods=["POST"])
 def forgot_password():
     user_package = request.get_json()
     app.logger.info(f'FORGOT_PASSWORD REQUEST FOR: {user_package}')
