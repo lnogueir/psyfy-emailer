@@ -15,7 +15,7 @@ class Emailer:
         self.msg = None
         self.receiver = receiver
 
-    def run(self, email_type, user_package, logger):
+    def run(self, email_type, user_package, logger=None):
         self.msg = MIMEMultipart("alternative")
         self.msg['From'] = self.account.user
         try:
@@ -25,23 +25,29 @@ class Emailer:
         except SMTPResponseException as e:
             error_code = e.smtp_code
             error_message = e.smtp_error
-            logger.info(
-                f'CONNECTION ERROR: SMTP CONNECTION FAILED: {error_message}, CODE: {error_code}\n\n')
+            if logger:
+                logger.info(
+                    f'CONNECTION ERROR: SMTP CONNECTION FAILED: {error_message}, CODE: {error_code}\n\n')
         except ConnectionAbortedError:
-            logger.info(
-                f'CONNECTION ERROR: ATTEMPT TO OVERRIDE EXISTING CONNECTING - {user_package}\n\n')
+            if logger:
+                logger.info(
+                    f'CONNECTION ERROR: ATTEMPT TO OVERRIDE EXISTING CONNECTING - {user_package}\n\n')
         except SMTPRecipientsRefused:
-            logger.info(
-                f'ERROR SENDING: INVALID RECEIVER - {self.receiver}\n\n')
+            if logger:
+                logger.info(
+                    f'ERROR SENDING: INVALID RECEIVER - {self.receiver}\n\n')
         except TypeError:
-            logger.info(
-                f'ERROR SENDING: INVALID USER PACKAGE - {user_package}\n\n')
+            if logger:
+                logger.info(
+                    f'ERROR SENDING: INVALID USER PACKAGE - {user_package}\n\n')
         except ConnectionError:
-            logger.info(
-                f'ERROR SENDING: ATTEMPT TO SEND MESSAGE WITH NO CONNECTION - {user_package}\n\n')
+            if logger:
+                logger.info(
+                    f'ERROR SENDING: ATTEMPT TO SEND MESSAGE WITH NO CONNECTION - {user_package}\n\n')
         else:
-            logger.info(
-                f'EMAIL SENT SUCCESSFULLY: USER PACKAGE - {user_package}\n\n')
+            if logger:
+                logger.info(
+                    f'EMAIL SENT SUCCESSFULLY: USER PACKAGE - {user_package}\n\n')
             return True
         finally:
             self.disconnect()

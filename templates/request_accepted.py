@@ -3,25 +3,19 @@ def request_accepted_template(user_package):
         """
             <html>
                 <body style="font-size: 20px;overflow-x:hidden;">
-                    <div style="background: url(https://raw.githubusercontent.com/lnogueir/psyfy-frontend/master/psyfy/src/assets/main_background.jpg);
-                                height:35px; 
-                                width: 100%;
-                                padding: 20px 20px 31px 20px;
-                                ">
-                        <img src="https://raw.githubusercontent.com/lnogueir/psyfy-frontend/master/psyfy/src/assets/images/psycare_logo.png" 
-                        style="height: 47.5px"/>   
-                    </div>
                     <div>
-                        <p style="padding: 5px 7.5px 7.5px 20px">
+                        <div style="display:flex;justify-content:space-between;">
                             <span style="font-size:22px;font-weight:900;">Hello {0},</span>
-                            <br/><br/>
+                            <img alt="PsyCare Logo" src="/bla"/>
+                        </div>
+                        <p style="padding: 5px 7.5px 7.5px 20px">
                             We are happy to say that your account has been aproved 
                             by our team and you are now a official PsyCare member!
                             <br><br>
                             <h3>Next steps:</h3>
                             <ol>
                                 <li>Login to your account with this password: <i><b>{1}</b></i></li>
-                                <li>Update your password on <a href="#">'Manage your credentials'</a></li>
+                                <li>Update your password on <a href="https://psycare.ca/manage_credentials">'Manage your credentials'</a></li>
                                 <li>On your <a href="#">Overview</a> confirm that your account contain the following info:<br/>
                                     <ul>
                                         <li><b>Full Name</b>: {0}</li>
@@ -40,6 +34,22 @@ def request_accepted_template(user_package):
                         <h4>Again, thanks for joining us!</h4>
                         <div>
                             <i>Best regards, PsyCare info team.</i>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;">
+                            <div style="display:flex; justify-content:flex-start">
+                                <div style="margin-right:7.5px;">
+                                    <a href=""></a>
+                                </div>
+                                <div style="margin-right:7.5px;">
+                                    <a href="#"></a>
+                                </div>
+                                <div style="margin-right:7.5px;">
+                                    <a href="#"></a>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="bla"/>
+                            </div>
                         </div>
                     </div>
                 </body>

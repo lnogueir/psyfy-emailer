@@ -2,6 +2,7 @@ from templates.request_account import request_account_template
 from templates.request_accepted import request_accepted_template
 from templates.request_declined import request_declined_template
 from templates.forgot_password import forgot_password_template
+from templates.campaign import campaign_template
 
 
 class Template:
@@ -25,5 +26,9 @@ class Template:
         'FORGOT_PASSWORD': {
             'body': forgot_password_template,
             'subject': 'Reset Password Request'
+        },
+        'CAMPAIGN': {
+            'body': campaign_template,
+            'subject': 'PsyCare Released!'
         }
     }
