@@ -4,6 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 from template import Template
+import os
 
 
 class Emailer:
@@ -56,7 +57,7 @@ class Emailer:
     def connect(self):
         if not Emailer.connected:
             try:
-                connection = SMTP('smtp.gmail.com', 587)
+                connection = SMTP(os.getenv('SMTP_SERVER_ADDRESS'), 587)
                 connection.ehlo()
                 connection.starttls()
                 connection.login(self.account.user, self.account.password)
